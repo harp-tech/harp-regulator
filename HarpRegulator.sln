@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarpRegulator", "src\HarpRegulator\HarpRegulator.csproj", "{94CF550A-17BD-949D-37AB-CC16C7E47051}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harp.Protocol", "src\Harp.Protocol\Harp.Protocol.csproj", "{4FC2FEB8-B3F2-DB35-8C2A-2892D33BF46F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicobootConnection", "src\PicobootConnection\PicobootConnection.csproj", "{1308F24A-A6E5-492E-A55D-4B100C03E575}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harp.Devices", "src\Harp.Devices\Harp.Devices.csproj", "{B483F312-0224-48DC-B2F0-403D99E1857D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harp.Devices.Tests", "src\Harp.Devices.Tests\Harp.Devices.Tests.csproj", "{4E003196-BAB7-43C1-AC4D-B27C79041BD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94CF550A-17BD-949D-37AB-CC16C7E47051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94CF550A-17BD-949D-37AB-CC16C7E47051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94CF550A-17BD-949D-37AB-CC16C7E47051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94CF550A-17BD-949D-37AB-CC16C7E47051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FC2FEB8-B3F2-DB35-8C2A-2892D33BF46F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC2FEB8-B3F2-DB35-8C2A-2892D33BF46F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC2FEB8-B3F2-DB35-8C2A-2892D33BF46F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC2FEB8-B3F2-DB35-8C2A-2892D33BF46F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1308F24A-A6E5-492E-A55D-4B100C03E575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1308F24A-A6E5-492E-A55D-4B100C03E575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1308F24A-A6E5-492E-A55D-4B100C03E575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1308F24A-A6E5-492E-A55D-4B100C03E575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B483F312-0224-48DC-B2F0-403D99E1857D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B483F312-0224-48DC-B2F0-403D99E1857D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B483F312-0224-48DC-B2F0-403D99E1857D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B483F312-0224-48DC-B2F0-403D99E1857D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E003196-BAB7-43C1-AC4D-B27C79041BD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E003196-BAB7-43C1-AC4D-B27C79041BD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E003196-BAB7-43C1-AC4D-B27C79041BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E003196-BAB7-43C1-AC4D-B27C79041BD6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D02E52C5-60B0-4D2F-BFAD-813BE31FF193}
+	EndGlobalSection
+EndGlobal

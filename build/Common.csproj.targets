@@ -1,0 +1,3 @@
+<Project>
+  <Import Project="Project.csproj.targets" Condition="Exists('Project.csproj.targets')" />
+</Project>

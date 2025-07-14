@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Harp.Devices\Harp.Devices.csproj" />
+    <ProjectReference Include="..\Harp.Protocol\Harp.Protocol.csproj" />
+    <ProjectReference Include="..\PicobootConnection\PicobootConnection.csproj" />
+  </ItemGroup>
+
+</Project>

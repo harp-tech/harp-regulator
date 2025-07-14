@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+
+    <_NativeRid>$(NETCoreSdkPortableRuntimeIdentifier)</_NativeRid>
+
+    <_NativeFileName Condition="$(_NativeRid.StartsWith('win-'))">PicobootConnection.Native.dll</_NativeFileName>
+    <_NativePdbName Condition="$(_NativeRid.StartsWith('win-')) and '$(Configuration)' != 'Release'">PicobootConnection.Native.pdb</_NativePdbName>
+    <_NativeFileName Condition="$(_NativeRid.StartsWith('linux-'))">libPicobootConnection.Native.so</_NativeFileName>
+
+    <_NativeOutputDirectory Condition="$(_NativeRid.StartsWith('win-'))">$(ArtifactsPath)/obj/PicobootConnection.Native/cmake/$(_NativeRid)/$(Configuration)/</_NativeOutputDirectory>
+    <_NativeOutputDirectory Condition="$(_NativeRid.StartsWith('linux-'))">$(ArtifactsPath)/obj/PicobootConnection.Native/cmake/$(_NativeRid)-$(Configuration)/</_NativeOutputDirectory>
+
+    <_NativeFilePath Condition="'$(_NativeFileName)' != ''">$(_NativeOutputDirectory)$(_NativeFileName)</_NativeFilePath>
+    <_NativePdbPath Condition="'$(_NativePdbName)' != ''">$(_NativeOutputDirectory)$(_NativePdbName)</_NativePdbPath>
+
+    <_VendorRoot>../../vendor/</_VendorRoot>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(_NativeFilePath)" Link="$(_NativeFileName)" Condition="'$(_NativeFilePath)' != ''">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(_NativePdbPath)" Link="$(_NativePdbName)" Condition="'$(_NativePdbPath)' != ''">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(_VendorRoot)libusb/libusb-1.0.dll" Link="libusb-1.0.dll" Condition="$(_NativeRid.StartsWith('win-'))">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <!-- Non-exhaustive list of native library inputs and outputs -->
+  <ItemGroup>
+    <_BuildNativeInput Include="Native/**" />
+    <_BuildNativeInput Include="$(_VendorRoot)pico-sdk/pico_sdk_version.cmake" />
+    <_BuildNativeInput Include="$(_VendorRoot)libusb/*.h" />
+    <_BuildNativeInput Include="$(_VendorRoot)libusb/*.dll" />
+    <_BuildNativeInput Include="$(_VendorRoot)libusb/*.lib" />
+
+    <_BuildNativeOutput Include="$(_NativeFilePath)" />
+    <_BuildNativeOutput Include="$(_NativePdbPath)" Condition="'$(_NativePdbPath)' != ''" />
+
+    <UpToDateCheckInput Include="@(_BuildNativeInput)" />
+    <UpToDateCheckOutput Include="@(_BuildNativeOutput)" />
+  </ItemGroup>
+
+  <!--
+    Build native library
+    TODO: Implement clean
+  -->
+  <Target Name="_BuildNative"
+          BeforeTargets="GetCopyToOutputDirectoryItems;Build;GenerateNuspec;Pack;_NativeRuntimeChecks"
+          Inputs="@(_BuildNativeInput)"
+          Outputs="@(_BuildNativeOutput)">
+    <Message Importance="High" Text="Building $(_NativeFileName)..." />
+    <Exec Command="build-native.cmd" Condition="$(_NativeRid.StartsWith('win-'))" />
+    <Exec Command="build-native.sh" Condition="$(_NativeRid.StartsWith('linux-'))" />
+    <Error Condition="!Exists('$(_NativeFilePath)')" Text="Failed to build $(_NativeFileName)" />
+  </Target>
+
+  <!-- Error if required assets are missing -->
+  <Target Name="_NativeRuntimeChecks" BeforeTargets="GetCopyToOutputDirectoryItems;Build;GenerateNuspec;Pack">
+    <Error Text="Could not automatically determine the native runtime to use based on runtime identifier '$(_NativeRid)'" Condition="'$(_NativeFileName)' == ''" />
+    <Error Text="Could not locate native runtime for '$(_NativeRid)' at '$(_NativeFilePath)', did you run build-native.cmd/sh?" Condition="!Exists('$(_NativeFilePath)')" />
+    <Error Text="Could not locate native runtime PDB for '$(_NativeRid)' at '$(_NativePdbPath)', did you run build-native.cmd/sh?" Condition="'$(_NativePdbName)' != '' and !Exists('$(_NativePdbPath)')" />
+  </Target>
+
+</Project>
