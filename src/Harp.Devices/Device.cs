@@ -209,6 +209,11 @@ public sealed partial record Device
                     case 0xeeee when Kind is DeviceKind.Pico:
                         Trace.WriteLine($"Ignoring invalid serial number {harpSerialNumber:x4} returned by {PortName}.");
                         break;
+                    // This is the default serial number used by the official core.pico example
+                    // https://github.com/harp-tech/core.pico/blob/ef3745f6a1e6776910bcafaf1dc86445ed294d03/examples/harp_c_app_example/src/main.cpp#L20
+                    case 0xCAFE when Kind is DeviceKind.Pico:
+                        Trace.WriteLine($"Ignoring dubious serial number {harpSerialNumber:x4} returned by {PortName}.");
+                        break;
                     default:
                         serialNumber = harpSerialNumber;
                         break;
